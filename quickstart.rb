@@ -43,13 +43,13 @@ service.client_options.application_name = APPLICATION_NAME
 service.authorization = authorize
 
 # Fetch the next 10 events for the user
-calendar_id = 'primary'
+calendar_id = 'addressbook#contacts@group.v.calendar.google.com'
 response = service.list_events(calendar_id,
-                               max_results: 10,
+                               max_results: 5,
                                single_events: true,
                                order_by: 'startTime',
                                time_min: DateTime.now.rfc3339)
-puts 'Upcoming events:'
+puts 'Upcoming birthdays:'
 puts 'No upcoming events found' if response.items.empty?
 response.items.each do |event|
   start = event.start.date || event.start.date_time
